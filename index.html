@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Will You Be My Valentine?</title>
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      background-color: lightpink;
+      color: white;
+      text-align: center;
+      margin: 0;
+      padding: 20px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      flex-direction: column;
+      overflow: auto; /* Allow scrolling if content overflows */
+    }
+    h1 {
+      font-size: 3rem;
+      margin-bottom: 20px;
+      animation: float 3s ease-in-out infinite;
+    }
+    .button {
+      background-color: white;
+      color: lightpink;
+      border: none;
+      padding: 15px 30px;
+      font-size: 1.5rem;
+      margin: 10px;
+      cursor: pointer;
+      border-radius: 10px;
+      transition: background-color 0.3s ease;
+      animation: pulse 2s infinite;
+    }
+    .button:hover {
+      background-color: #ffcccb;
+    }
+    .gallery {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px; /* Space between photos */
+      max-width: 1200px;
+      margin: 20px auto;
+    }
+    .gallery img {
+      max-width: 100%;
+      max-height: 200px; /* Limit height to prevent over-extension */
+      width: auto;
+      height: auto;
+      border-radius: 10px;
+      border: 3px solid white;
+      animation: float 6s ease-in-out infinite;
+      object-fit: contain; /* Ensures the photo fits within the frame */
+    }
+    .hidden {
+      display: none;
+    }
+    .fireworks, .balloons {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      pointer-events: none;
+    }
+    .firework {
+      position: absolute;
+      width: 10px;
+      height: 10px;
+      background: #ff0;
+      border-radius: 50%;
+      animation: explode 1.5s ease-out infinite;
+    }
+    .balloon {
+      position: absolute;
+      width: 50px;
+      height: 70px;
+      background: red;
+      border-radius: 50%;
+      animation: floatBalloon 6s ease-in-out infinite;
+    }
+    .balloon::before {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 20px;
+      width: 10px;
+      height: 20px;
+      background: red;
+      border-radius: 50%;
+    }
+    .balloon::after {
+      content: '';
+      position: absolute;
+      bottom: -30px;
+      left: 23px;
+      width: 4px;
+      height: 30px;
+      background: black;
+    }
+    @keyframes float {
+      0%, 100% {
+        transform: translateY(0);
+      }
+      50% {
+        transform: translateY(-20px);
+      }
+    }
+    @keyframes pulse {
+      0%, 100% {
+        transform: scale(1);
+      }
+      50% {
+        transform: scale(1.1);
+      }
+    }
+    @keyframes explode {
+      0% {
+        transform: scale(1);
+        opacity: 1;
+      }
+      100% {
+        transform: scale(3);
+        opacity: 0;
+      }
+    }
+    @keyframes floatBalloon {
+      0%, 100% {
+        transform: translateY(0);
+      }
+      50% {
+        transform: translateY(-20px);
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- First Page -->
+  <div id="page1">
+    <h1>Will you be my Valentine Chichi?</h1>
+    <div class="gallery">
+      <!-- Add 15 photos here -->
+      <img src="photo1.jpg" alt="Our Photo 1">
+      <img src="photo2.jpg" alt="Our Photo 2">
+      <img src="photo3.jpg" alt="Our Photo 3">
+      <img src="photo4.jpg" alt="Our Photo 4">
+      <img src="photo5.jpg" alt="Our Photo 5">
+      <img src="photo6.jpg" alt="Our Photo 6">
+      <img src="photo7.jpg" alt="Our Photo 7">
+      <img src="photo8.jpg" alt="Our Photo 8">
+      <img src="photo9.jpg" alt="Our Photo 9">
+      <img src="photo10.jpg" alt="Our Photo 10">
+      <img src="photo11.jpg" alt="Our Photo 11">
+      <img src="photo12.jpg" alt="Our Photo 12">
+      <img src="photo13.jpg" alt="Our Photo 13">
+      <img src="photo14.jpg" alt="Our Photo 14">
+      <img src="photo15.jpg" alt="Our Photo 15">
+    </div>
+    <div style="margin-top: 20px;">
+      <button class="button" onclick="showPage2()">Yes Bubu</button>
+      <button class="button" onclick="showPage3()">Nooo!!</button>
+    </div>
+  </div>
+
+  <!-- Second Page (Yes) -->
+  <div id="page2" class="hidden">
+    <h1>Congratulations!! You have made the right choice. I love you the most Jaan ❤️</h1>
+    <div class="fireworks">
+      <div class="firework" style="top: 10%; left: 20%;"></div>
+      <div class="firework" style="top: 30%; left: 50%;"></div>
+      <div class="firework" style="top: 70%; left: 80%;"></div>
+    </div>
+    <div class="balloons">
+      <div class="balloon" style="left: 10%;"></div>
+      <div class="balloon" style="left: 30%;"></div>
+      <div class="balloon" style="left: 50%;"></div>
+      <div class="balloon" style="left: 70%;"></div>
+      <div class="balloon" style="left: 90%;"></div>
+    </div>
+    <button class="button" onclick="goBack()">Go Back</button>
+  </div>
+
+  <!-- Third Page (No) -->
+  <div id="page3" class="hidden">
+    <h1>You've made the wrong choice. Go Back and choose the right option Baby Girl 😘</h1>
+    <button class="button" onclick="goBack()">Go Back</button>
+  </div>
+
+  <!-- Audio Player -->
+  <audio id="valentineSong" autoplay loop>
+    <source src="song" type="audio/mpeg">
+    Your browser does not support the audio element.
+  </audio>
+
+  <script>
+    // Play the song automatically when the page loads
+    document.getElementById('valentineSong').play();
+
+    function showPage2() {
+      document.getElementById('page1').classList.add('hidden');
+      document.getElementById('page2').classList.remove('hidden');
+    }
+
+    function showPage3() {
+      document.getElementById('page1').classList.add('hidden');
+      document.getElementById('page3').classList.remove('hidden');
+    }
+
+    function goBack() {
+      document.getElementById('page2').classList.add('hidden');
+      document.getElementById('page3').classList.add('hidden');
+      document.getElementById('page1').classList.remove('hidden');
+    }
+  </script>
+</body>
+</html>
